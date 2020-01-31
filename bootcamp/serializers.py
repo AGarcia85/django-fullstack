@@ -15,9 +15,10 @@ class InstructorSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('instructor_url', 'name', 'photo_url', 'immersive', 'school', 'campus', 'posts')
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    instructors = serializers.HyperlinkedRelatedField(
+    # instructor = serializers.PrimaryKeyRelatedField(
+    instructor = serializers.HyperlinkedRelatedField(
         view_name='instructor_detail',
-        many=True,
+        # many=True,
         read_only=True
     )
     post_url = serializers.ModelSerializer.serializer_url_field(
@@ -25,4 +26,4 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Post
-        fields = ('post_url', 'instructor', 'post', 'date', 'instructors')
+        fields = ('post_url', 'post', 'date', 'instructor')

@@ -1,3 +1,4 @@
+from django.shortcuts import render, redirect
 from rest_framework import generics, permissions
 from .serializers import InstructorSerializer, PostSerializer
 from .models import Instructor, Post
@@ -20,4 +21,3 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    

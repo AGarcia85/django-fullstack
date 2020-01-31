@@ -3,7 +3,7 @@ from datetime import date
 
 class Instructor(models.Model):
     name = models.CharField(max_length=100)
-    photo_url = models.TextField
+    photo_url = models.TextField(null=True)
     immersive = models.CharField(max_length=100)
     school = models.CharField(max_length=100)
     campus = models.CharField(max_length=100)
@@ -12,6 +12,9 @@ class Instructor(models.Model):
         return self.name
 
 class Post(models.Model):
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name='posts')
-    post = models.TextField
-    date = models.DateField
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name='posts', null=True)
+    post = models.TextField(null=True)
+    date = models.DateField(null=True)
+
+    def __str__(self):
+        return self.post
